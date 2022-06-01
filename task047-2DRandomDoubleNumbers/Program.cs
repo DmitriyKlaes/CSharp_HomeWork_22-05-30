@@ -9,7 +9,6 @@ m = 3, n = 4.
 double[,] GetArrayDoubleRandom(int rowNumber, int colNumber, int deviation)
 {
     double[,] result = new double[rowNumber, colNumber];
-
     for (int i = 0; i < rowNumber; i++)
     {
         for (int j = 0; j < colNumber; j++)
@@ -17,7 +16,6 @@ double[,] GetArrayDoubleRandom(int rowNumber, int colNumber, int deviation)
             result[i, j] = new Random().NextDouble() * deviation * 2 - deviation;
         }
     }
-
     return result;
 }
 
