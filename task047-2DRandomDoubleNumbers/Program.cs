@@ -38,15 +38,12 @@ void Print2DArray(double[,] arrayToPrint)
     }
 }
 
-Console.Write("Введите колличество строк массива: ");
-int row = Convert.ToInt32(Console.ReadLine());
+int rowForArray = 5;
+int columnForArray = 5;
+int deviationNumbers = 10; //Рандом чисел от -(значение - 0,1) до (значение - 0,1)
 
-Console.Write("Введите колличество колонок массива: ");
-int column = Convert.ToInt32(Console.ReadLine());
-
-Console.Write("Введите коэффициент для рандомных чисел: ");
-int dev = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine($"\nПолученный массив со случайными вещественными числами от -{dev - 0.1} до {dev - 0.1}: ");
-double[,] random2DArray = GetArrayDoubleRandom(row, column, dev);
+Console.WriteLine("\nПолученный массив со случайными вещественными числами "
+                + $"от -{deviationNumbers - 0.1} до {deviationNumbers - 0.1}:\n");
+                
+double[,] random2DArray = GetArrayDoubleRandom(rowForArray, columnForArray, deviationNumbers);
 Print2DArray(random2DArray);
