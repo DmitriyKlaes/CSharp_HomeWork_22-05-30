@@ -22,6 +22,7 @@ int[,] GetArrayDoubleRandom(int rowNumber, int colNumber)
     return result;
 }
 
+// Основная функция для поиска элемента
 int FindPositionInArray(int[,] arrayForCheck, int numberPosition)
 {
     if (numberPosition >= 0 && numberPosition <= arrayForCheck.Length - 1)
@@ -34,7 +35,7 @@ int FindPositionInArray(int[,] arrayForCheck, int numberPosition)
 
 void Print2DArray(int[,] arrayToPrint, int elementForColor)
 {
-    Console.Write($"[X]\t");
+    Console.Write($"\n[X]\t");
     for (int i = 0; i < arrayToPrint.GetLength(1); i++)
     {
         Console.Write($"[{i}]\t");
@@ -48,29 +49,33 @@ void Print2DArray(int[,] arrayToPrint, int elementForColor)
             if (i == elementForColor / arrayToPrint.GetLength(1) &&
                 j == elementForColor % arrayToPrint.GetLength(1))
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
             }
             Console.Write(arrayToPrint[i, j] + "\t");
             Console.ResetColor();
         }
         Console.WriteLine();
     }
+    Console.ForegroundColor = ConsoleColor.DarkCyan;
 }
-System.Console.WriteLine("Введите зазмер двумерного массива: ");
-System.Console.Write("Количество строк: ");
-int row = Convert.ToInt32(Console.ReadLine());
 
-System.Console.Write("Количество столбцов: ");
-int column = Convert.ToInt32(Console.ReadLine());
+int rowForArray = 5;
+int columnForArray = 5;
+int[,] random2DArray = GetArrayDoubleRandom(rowForArray, columnForArray);
 
-System.Console.WriteLine("Введите позицию желаемого элемента: ");
+Console.Write($"\nВведите позицию желаемого элемента в двумерном массиве {rowForArray} на {columnForArray}: ");
 int position = Convert.ToInt32(Console.ReadLine());
-
-int[,] random2DArray = GetArrayDoubleRandom(row, column);
 int numberFromArray = FindPositionInArray(random2DArray, position);
 Print2DArray(random2DArray, position);
 
-
-
-Console.ForegroundColor = ConsoleColor.Cyan;
-System.Console.WriteLine($"\nВ позиции {position} лежит элемент {numberFromArray}");
+if (position >= random2DArray.Length || position < 0)
+{
+    Console.ForegroundColor = ConsoleColor.DarkRed;
+    Console.WriteLine($"\nВ двумерном массиве {rowForArray} на {columnForArray} позиция {numberFromArray} отсутствует!");
+    Console.WriteLine($"Допустимый диапазон от 0 до {random2DArray.Length - 1}!");
+    Console.ResetColor();
+}
+else
+{
+    Console.WriteLine($"\nНа позиции {position} находится элемент {numberFromArray}");
+}
